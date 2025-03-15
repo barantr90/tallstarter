@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+#use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
@@ -42,7 +43,9 @@ class CreateUser extends Component
         $user = User::query()->create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => Hash::make(Str::random(16)),
+            // If no e-mail will be sent at this stage, the password can be "password" 
+            'password' => Hash::make('password'), 
+            #'password' => Hash::make(Str::random(16)),
             'locale' => $this->locale,
         ]);
 
